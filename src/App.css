@@ -1,38 +1,108 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Inter", sans-serif;
+  overflow: auto;
+  font-size: 12px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.special-container {
+  height: 90vh;
+  padding: 20px;
+  overflow-x: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card-container {
+  height: 90vh;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  overflow-x: scroll;
+  text-align-last: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.box-container {
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.box-count {
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+}
+
+.table-action-icon {
+  display: flex;
+  justify-content: end;
+}
+
+.special-table {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: scroll;
+  margin-top: 50px;
+}
+
+.card {
+  height: 55vh;
+  width: 30vh;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
+}
+
+.box-card {
+  height: auto;
+  width: 90vh;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
+}
+
+.box-header {
+  height: auto;
+}
+
+.card-detail-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+}
+
+.card-detail {
+  align-items: center;
+  height: 80vh;
+  width: 60%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
+  font-size: 16px;
+}
+
+.alert {
+  width: 300px;
+}
+
+.cart-button {
+  font-size: smaller;
+}
+
+.child-detail {
+  flex: 1;
+  margin: 5px;
+}
+
+.flex-child-element:first-child {
+  margin-right: 20px;
+}
+.toast-message {
+  display: flex;
+  justify-content: center;
 }
