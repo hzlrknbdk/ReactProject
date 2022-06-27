@@ -1,15 +1,7 @@
-import {
-  Navbar,
-  Container,
-  Nav,
-  Form,
-  Button,
-  Modal,
-  Alert,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, Form, Button, Modal } from "react-bootstrap";
 
-import { useState } from "react";
-import { signIn } from "../config/firebase";
+import { useEffect, useState } from "react";
+import { signIn, signOutAccount } from "../config/firebase";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Bestsellers from "./Bestsellers";
 import NewReleases from "./NewReleases";
@@ -21,47 +13,37 @@ import MySpecialLibrary from "./MySpecialLibrary";
 
 function NavbarComponent() {
   const [show, setShow] = useState(false);
-  const [showAlert, setAlert] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
-
   const [formValue, setValue] = useState({ email: "", password: "" });
+
+  useEffect(() => {
+    setSuccess(localStorage.getItem("isAuth"));
+  }, []);
 
   const handleClose = () => {
     setShow(false);
-    setSuccess(false);
-    setAlert(false);
   };
 
   const handleShow = () => {
-    if (isSuccess) return;
-    setShow(true);
-    setValue({ email: "", password: "" });
+    if (isSuccess) {
+      setShow(false);
+      setSuccess(false);
+      signOutAccount();
+    } else {
+      setShow(true);
+      setValue({ email: "", password: "" });
+    }
   };
 
   const handleSubmit = () => {
     setShow(false);
-    signIn(formValue.email, formValue.password)
-      .then((data) => {
-        console.log({ data: data.idToken });
-        setSuccess(true);
-        setMessage();
-      
-      })
-      .catch(() => {
-        setSuccess(false);
-        setMessage();
-      });
+    signIn(formValue.email, formValue.password).then(() => {
+      setSuccess(localStorage.getItem("isAuth"));
+    });
   };
 
   const onChange = (e) => {
     setValue({ ...formValue, [e.target.name]: e.target.value });
-  };
-
-  const setMessage = () => {
-    setAlert(true);
-    setTimeout(() => {
-      setAlert(false);
-    }, 3000);
   };
 
   return (
@@ -77,10 +59,11 @@ function NavbarComponent() {
               <Nav.Link href="myspeciallist">Özel Listem</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link onClick={handleShow}>
-                {isSuccess ? "Hoşgeldin" : "Giriş Yap"}
-              </Nav.Link>
               <Nav.Link href="pricing">Sepetim</Nav.Link>
+
+              <Nav.Link onClick={handleShow}>
+                {isSuccess ? "Çıkış Yap" : "Giriş Yap"}
+              </Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -133,13 +116,6 @@ function NavbarComponent() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <Alert
-        className="alert"
-        variant={isSuccess ? "success" : "danger"}
-        show={showAlert}
-      >
-        {isSuccess ? "Success!" : "Danger!"}
-      </Alert>
     </>
   );
 }

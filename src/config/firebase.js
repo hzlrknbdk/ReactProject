@@ -11,14 +11,30 @@ import {
   doc,
 } from "firebase/firestore";
 import {
-  createUserWithEmailAndPassword,
   getAuth,
-  signInWithEmailAndPassword,
+  signOut,
   updateCurrentUser,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
+import {
+  API_KEY,
+  AUTH_DOMAIN,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+  MES_SENDER_ID,
+  APP_ID,
+  MEASUREMENT_ID,
+} from "./env";
 
 const firebaseConfig = {
- 
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MES_SENDER_ID,
+  appId: APP_ID,
+  measurementId: MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -37,7 +53,13 @@ export const signUp = async (name, email, password) => {
 
 export const signIn = async (email, password) => {
   await signInWithEmailAndPassword(auth, email, password).then((data) => {
-    console.log({ data: data._tokenResponse.idToken });
+    localStorage.setItem("isAuth", !!data._tokenResponse.idToken);
+  });
+};
+
+export const signOutAccount = async () => {
+  await signOut(auth).then(() => {
+    localStorage.setItem("isAuth", false);
   });
 };
 

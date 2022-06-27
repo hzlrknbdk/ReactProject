@@ -7,9 +7,9 @@ import { Button, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 const Pricing = () => {
-  const products = useProductsListener();
   const [totalCount, setTotalCount] = useState(0);
-
+  
+  const products = useProductsListener();
   const carts = products.filter((item) => item.isCart);
 
   const incCount = (count, id) => {
