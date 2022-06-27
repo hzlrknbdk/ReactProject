@@ -1,6 +1,18 @@
 # Home Page
 <img src="homepage.png" width="auto">
 
+# Book Detail Page
+<img src="detailpage.png" width="auto">
+
+# Login Page
+<img src="loginpage.png" width="auto">
+
+# Cart Page
+<img src="cartpage.png" width="auto">
+
+# Pricate List Page
+<img src="privatelist.png" width="auto">
+
 
 # Getting Started with Create React App
 
