@@ -1,5 +1,5 @@
 # Home Page
-<img src="homepage" width="auto">
+<img src="homepage.png" width="auto">
 
 
 # Getting Started with Create React App
