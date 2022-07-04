@@ -10,7 +10,7 @@
 # Cart Page
 <img src="cartpage.png" width="auto">
 
-# Pricate List Page
+# Private List Page
 <img src="privatelist.png" width="auto">
 
 
